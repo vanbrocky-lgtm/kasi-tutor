@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasi Tutor</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: black;
+    color: white;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: black;
+}
+
+nav h2 {
+    color: red;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: red;
+}
+
+/* BUTTON */
+.btn {
+    padding: 8px 15px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 40px;
+    background: red;
+}
+
+/* SECTIONS */
+.section {
+    background: white;
+    color: black;
+    margin: 15px;
+    padding: 20px;
+    border-left: 8px solid red;
+    border-radius: 8px;
+}
+
+/* QUIZ */
+.question {
+    background: #eee;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* LOGIN POPUP */
+#loginBox {
+    display:none;
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    color:black;
+    width:300px;
+}
+
+/* CONTACT */
+.contact {
+    text-align:center;
+    padding:30px;
+    background:#111;
+}
+
+/* FOOTER */
+footer {
+    background:red;
+    text-align:center;
+    padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h2>Kasi Tutor</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#chapters">Chapters</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="btn" onclick="openLogin()">Login</button>
+</nav>
+
+<!-- HEADER -->
+<header id="home">
+    <h1>Kasi Tutor</h1>
+    <p>Master Accounting Through Learning & Practice</p>
+    <button class="btn" onclick="openLogin()">Get Started</button>
+</header>
+
+<!-- USER INFO -->
+<div class="section">
+    <h2 id="welcomeText">Welcome Student</h2>
+</div>
+
+<!-- PROGRESS -->
+<div class="section">
+    <h2>Your Progress</h2>
+    <p id="savedScore">No results yet</p>
+</div>
+
+<!-- CHAPTERS -->
+<div id="chapters">
+
+<div class="section">
+    <h2>Companies</h2>
+    <p>Shares, dividends and company structure.</p>
+    <div class="question"><b>NSC:</b> Record issue of shares.</div>
+</div>
+
+<div class="section">
+    <h2>Fixed Assets</h2>
+    <p>Depreciation and asset disposal.</p>
+    <div class="question"><b>NSC:</b> Calculate depreciation.</div>
+</div>
+
+<div class="section">
+    <h2>Cash Flow</h2>
+    <p>Track inflows and outflows.</p>
+    <div class="question"><b>NSC:</b> Prepare cash flow statement.</div>
+</div>
+
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+    <h2>Accounting Quiz</h2>
+
+    <p><b>1. Current ratio formula?</b></p>
+    <input type="radio" name="q1" value="a"> Current Assets ÷ Current Liabilities<br>
+    <input type="radio" name="q1" value="b"> Profit ÷ Sales<br>
+
+    <p><b>2. VAT rate?</b></p>
+    <input type="radio" name="q2" value="a"> 10%<br>
+    <input type="radio" name="q2" value="b"> 15%<br>
+
+    <p><b>3. Depreciation affects?</b></p>
+    <input type="radio" name="q3" value="a"> Assets<br>
+    <input type="radio" name="q3" value="b"> Income<br>
+
+    <br>
+    <button class="btn" onclick="checkQuiz()">Submit</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="contact">
+    <h2>Book a Session</h2>
+    <p>One-on-one tutoring at your home</p>
+    <a href="https://wa.me/27XXXXXXXXX" class="btn">WhatsApp</a>
+</div>
+
+<!-- LOGIN POPUP -->
+<div id="loginBox">
+<h3>Student Login</h3>
+
+<input type="text" id="studentName" placeholder="Name" style="width:100%;padding:8px;"><br><br>
+<input type="text" id="studentGrade" placeholder="Grade" style="width:100%;padding:8px;"><br><br>
+<input type="password" id="studentPassword" placeholder="Password" style="width:100%;padding:8px;"><br><br>
+
+<button class="btn" onclick="saveUser()">Register</button>
+<button class="btn" onclick="loginUser()">Login</button>
+<button class="btn" onclick="closeLogin()">Close</button>
+</div>
+
+<footer>
+    <p>Kasi Tutor © 2026</p>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+
+function openLogin() {
+    document.getElementById("loginBox").style.display = "block";
+}
+
+function closeLogin() {
+    document.getElementById("loginBox").style.display = "none";
+}
+
+function saveUser() {
+    let name = studentName.value;
+    let grade = studentGrade.value;
+    let password = studentPassword.value;
+
+    if(!name || !grade || !password) {
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("kasiName", name);
+    localStorage.setItem("kasiGrade", grade);
+    localStorage.setItem("kasiPassword", password);
+
+    welcomeText.innerHTML = "Welcome " + name + " (Grade " + grade + ")";
+    closeLogin();
+}
+
+function loginUser() {
+    let input = studentPassword.value;
+    let saved = localStorage.getItem("kasiPassword");
+
+    if(input === saved) {
+        alert("Login successful");
+        closeLogin();
+    } else {
+        alert("Wrong password");
+    }
+}
+
+function checkQuiz() {
+    let score = 0;
+
+    if(document.querySelector('input[name="q1"]:checked')?.value === "a") score++;
+    if(document.querySelector('input[name="q2"]:checked')?.value === "b") score++;
+    if(document.querySelector('input[name="q3"]:checked')?.value === "a") score++;
+
+    let total = 3;
+    let percent = (score/total)*100;
+
+    result.innerHTML = "Score: " + percent + "%";
+
+    let name = localStorage.getItem("kasiName");
+    if(name) localStorage.setItem(name+"_score", percent);
+
+    loadScores();
+}
+
+function loadScores() {
+    let name = localStorage.getItem("kasiName");
+    let score = localStorage.getItem(name+"_score");
+
+    if(score) {
+        savedScore.innerHTML = name + "'s Last Score: " + score + "%";
+    }
+}
+
+window.onload = function() {
+    let name = localStorage.getItem("kasiName");
+    let grade = localStorage.getItem("kasiGrade");
+
+    if(name && grade) {
+        welcomeText.innerHTML = "Welcome back " + name + " (Grade " + grade + ")";
+    }
+
+    loadScores();
+}
+
+</script>
+
+</body>
+</html>
