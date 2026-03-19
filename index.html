@@ -7,11 +7,32 @@
 
 <style>
 body {
-    margin: 0;
     font-family: Arial;
     background: black;
     color: white;
+    text-align: center;
 }
+
+button {
+    background: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.card {
+    background: #222;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.card:hover {
+    background: red;
+}   
+
 
 /* NAVBAR */
 nav {
@@ -106,8 +127,60 @@ footer {
 </head>
 
 <body>
+<div id="loginPage">
+    <h2>Kasi Tutor Login</h2>
 
-<!-- NAVBAR -->
+    <input id="username" placeholder="Enter Name"><br><br>
+
+    <select id="grade">
+        <option value="">Select Grade</option>
+        <option value="10">Grade 10</option>
+        <option value="11">Grade 11</option>
+        <option value="12">Grade 12</option>
+    </select><br><br>
+
+    <button onclick="login()">Login</button>
+</div>    
+
+<<div id="dashboard" style="display:none;">
+
+    <h2 id="welcomeMsg"></h2>
+
+    <button onclick="logout()">Logout</button>
+
+    <!-- CARD -->
+    <div class="card" onclick="toggleChapters()">
+        <h3>📘 Accounting</h3>
+        <p>Click to view chapters</p>
+    </div>
+
+    <!-- CHAPTERS -->
+    <div id="chapters" style="display:none;">
+        <p>Income Statement</p>
+        <p>VAT</p>
+        <p>Depreciation</p>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quizSection">
+        <h3>Quiz</h3>
+
+        <p>Gross Profit formula?</p>
+        <input type="radio" name="q1" value="0"> Sales + Expenses<br>
+        <input type="radio" name="q1" value="1"> Sales - Cost of Sales<br>
+
+        <p>VAT rate?</p>
+        <input type="radio" name="q2" value="0"> 10%<br>
+        <input type="radio" name="q2" value="1"> 15%<br>
+
+        <br>
+        <button onclick="submitQuiz()">Submit</button>
+
+        <h4 id="scoreDisplay"></h4>
+    </div>
+
+</div>
+    !-- NAVBAR -->
 <nav>
     <h2>Kasi Tutor</h2>
     <ul>
@@ -452,6 +525,105 @@ window.onload = function() {
 }
 
 </script>
+   <button onclick="toggleChat()" style="position:fixed;bottom:20px;right:20px;">💬</button>
+
+<div id="chatBox" style="display:none;position:fixed;bottom:80px;right:20px;background:white;color:black;padding:10px;width:250px;">
+    <h3>Kasi Tutor Bot</h3>
+    <div id="chatMessages"></div>
+    <input id="userInput">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<button onclick="toggleExamMode()">📊 Exam Mode</button> 
 
 </body>
+  <script>
+
+// LOGIN
+function login() {
+    let name = username.value;
+    let grade = grade.value;
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("grade", grade);
+
+    loadDashboard();
+}
+
+// LOAD DASHBOARD
+function loadDashboard() {
+    let name = localStorage.getItem("name");
+    let grade = localStorage.getItem("grade");
+
+    if(!name) return;
+
+    loginPage.style.display = "none";
+    dashboard.style.display = "block";
+
+    welcomeMsg.innerText = "Welcome " + name;
+
+    let savedScore = localStorage.getItem("score_" + name);
+    if(savedScore) {
+        scoreDisplay.innerText = "Previous Score: " + savedScore;
+    }
+}
+
+// LOGOUT
+function logout() {
+    localStorage.clear();
+    location.reload();
+}
+
+// CHAPTER TOGGLE
+function toggleChapters() {
+    chapters.style.display = chapters.style.display === "none" ? "block" : "none";
+}
+
+// QUIZ
+function submitQuiz() {
+    let score = 0;
+
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    let q2 = document.querySelector('input[name="q2"]:checked');
+
+    if(!q1 || !q2) return alert("Answer all");
+
+    score += +q1.value;
+    score += +q2.value;
+
+    let name = localStorage.getItem("name");
+    localStorage.setItem("score_" + name, score);
+
+    scoreDisplay.innerText = "Score: " + score + "/2";
+}
+
+// CHATBOT
+function toggleChat() {
+    chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+}
+
+let examMode = false;
+
+function toggleExamMode() {
+    examMode = !examMode;
+    alert("Exam Mode " + (examMode ? "ON" : "OFF"));
+}
+
+function sendMessage() {
+    let input = userInput.value.toLowerCase();
+    let response = "Ask accounting question";
+
+    if(input.includes("vat")) response = "VAT is 15%";
+    if(input.includes("gross profit")) response = "Sales - Cost of Sales";
+
+    chatMessages.innerHTML += "<p>You: "+input+"</p>";
+    chatMessages.innerHTML += "<p>Bot: "+response+"</p>";
+
+    userInput.value = "";
+}
+
+// AUTO LOGIN
+window.onload = loadDashboard;
+
+</script>  
 </html>
