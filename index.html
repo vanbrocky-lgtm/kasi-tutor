@@ -125,8 +125,9 @@ footer {
 }
 </style>
 </head>
-
 <body>
+
+<!-- LOGIN PAGE (ONLY THING USER SEES FIRST) -->
 <div id="loginPage">
     <h2>Kasi Tutor Login</h2>
 
@@ -140,392 +141,62 @@ footer {
     </select><br><br>
 
     <button onclick="login()">Login</button>
-</div>    
+</div>
 
-<<div id="dashboard" style="display:none;">
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none;">
 
     <h2 id="welcomeMsg"></h2>
-
     <button onclick="logout()">Logout</button>
 
-    <!-- CARD -->
-    <div class="card" onclick="toggleChapters()">
-        <h3>📘 Accounting</h3>
-        <p>Click to view chapters</p>
+    <!-- GRADE 10 -->
+    <div id="grade10" style="display:none;">
+        <div class="card" onclick="toggle('chap10')">
+            <h3>📘 Grade 10</h3>
+        </div>
+        <div id="chap10" style="display:none;">
+            <p>Basic Accounting Concepts</p>
+        </div>
     </div>
 
-    <!-- CHAPTERS -->
-    <div id="chapters" style="display:none;">
-        <p>Income Statement</p>
-        <p>VAT</p>
-        <p>Depreciation</p>
+    <!-- GRADE 11 -->
+    <div id="grade11" style="display:none;">
+        <div class="card" onclick="toggle('chap11')">
+            <h3>📘 Grade 11</h3>
+        </div>
+        <div id="chap11" style="display:none;">
+            <p>Financial Statements</p>
+        </div>
+    </div>
+
+    <!-- GRADE 12 -->
+    <div id="grade12" style="display:none;">
+        <div class="card" onclick="toggle('chap12')">
+            <h3>📘 Grade 12</h3>
+        </div>
+        <div id="chap12" style="display:none;">
+            <p>Income Statement</p>
+            <p>VAT</p>
+            <p>Depreciation</p>
+        </div>
     </div>
 
     <!-- QUIZ -->
-    <div id="quizSection">
-        <h3>Quiz</h3>
+    <h3>Quiz</h3>
 
-        <p>Gross Profit formula?</p>
-        <input type="radio" name="q1" value="0"> Sales + Expenses<br>
-        <input type="radio" name="q1" value="1"> Sales - Cost of Sales<br>
-
-        <p>VAT rate?</p>
-        <input type="radio" name="q2" value="0"> 10%<br>
-        <input type="radio" name="q2" value="1"> 15%<br>
-
-        <br>
-        <button onclick="submitQuiz()">Submit</button>
-
-        <h4 id="scoreDisplay"></h4>
-    </div>
-
-</div>
-    !-- NAVBAR -->
-<nav>
-    <h2>Kasi Tutor</h2>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#chapters">Chapters</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="btn" onclick="openLogin()">Login</button>
-</nav>
-
-<!-- HEADER -->
-<header id="home">
-    <h1>Kasi Tutor</h1>
-    <p>Master Accounting Through Learning & Practice</p>
-    <button class="btn" onclick="openLogin()">Get Started</button>
-</header>
-
-<!-- USER INFO -->
-<div class="section">
-    <h2 id="welcomeText">Welcome Student</h2>
-</div>
-
-<!-- PROGRESS -->
-<div class="section">
-    <h2>Your Progress</h2>
-    <p id="savedScore">No results yet</p>
-</div>
-
-<!-- CHAPTERS -->
-<div id="chapters">
-
-<div class="section">
-    <h2>Companies</h2>
-    <p>Shares, dividends and company structure.</p>
-    <h3>WHAT IS AN INCOME STATEMENT?</h3> 
-<p>Think of it like a report card for a business.
-It answers one question:<br>
-Did the business make a profit or a loss?<br>
-🧠 BIG IDEA (VERY IMPORTANT)<br>
-There are only 2 types of accounts:</p>
-<table border="1">
-<tr><th>Income</th><th>Expenses</th></tr> 
-<tr><td> Money coming INTO the business</td><td>Money going OUT of the business</td></tr>
-</table>
-<p>STRUCTURE (HOW IT IS BUILT)
-We calculate in this order:</p> 
-<ol>
-<li>>Sales</li>
-<li>Cost of Sales</li>
-<li>Get Gross Profit</li>
-<li>Add Other Income</li>
-<li>Subtract Expenses</li>
-<li>Get Net Profit</li>
-</ol>
-<pre>
-<strong>1. SALES </strong>(Income )
-This is the main income of the business
-Comes from selling goods
-Example:
-The business sells goods for R20 000
-Sales = R20 000
-
-2. <strong>COST OF SALES</strong>(Expense )
-This is what it costs to buy the goods you sold
-Formula:
-Opening Stock + Purchases – Closing Stock
-Example:
-Opening stock = R5 000
-Purchases = R15 000
-Closing stock = R4 000
-Calculation: 5 000 + 15 000 – 4 000 = R16 000
-    
-3.<strong>GROSS PROFIT</strong>
-Profit made only from trading
-Formula:
-Sales – Cost of Sales
-Example:
-20 000 – 16 000 = R4 000
-This tells us: ✔️ The business is making money from selling goods
-    
-4.<strong>OTHER INCOME</strong> (Income )
-Extra income (not main business)
-Examples:
-Rent income
-Commission
-Example:
-Rent received = R2 000
-    
-5. EXPENSES (VERY IMPORTANT SECTION )
-These are costs to run the business
--Salaries & Wages (Expense )
-Paying workers
-Example: R8 000
-    
--Rent Expense (Expense )
-Paying for the building
-Example: R3 000
-    
--Water & Electricity (Expense )
-Utilities
-Example: R1 200
-    
--Telephone (Expense )
-Communication
-Example: R500
-    
-Advertising (Expense )
-Marketing the business
-Example: R1 000
-    
-- Insurance (Expense )
-Protection of assets
-Example: R800
-    
--Depreciation (Expense )
-Assets losing value over time
-Example:
-Asset = R10 000
-Rate = 10%
- 10% × 10 000 = R1 000
-    
-- Bad Debts (Expense )
-Customers who didn’t pay
-Example: R600
-    
-- Trading Stock Deficit (Expense )
-Missing stock
-Example: R400
-    
-6.<strong>Accrued expense vs Accrued income vs Prepaid expense vs Income received in advance</strong>
-    
-1. ACCRUED EXPENSES (Expense owing)
- Definition
-=An expense that belongs to this year but has NOT been paid yet
-=The business owes money
--Example
-Water & electricity for February = R1 000
-But it will only be paid in March
-#Treatment
-It is still an expense for this year 
-Add it to expenses
-Show as a liability (owing)
-+Calculation
-Expense = 5 000 + 1 000 = R6 000
-?How to think:
-“We used it, so we must record it”
-    
-2. ACCRUED INCOME (Income owed to us)
- Definition
-=Income that belongs to this year but has NOT been received yet
-=Someone owes the business money
--Example
-Rent income earned = R2 000
-But not yet received
-#Treatment
-It is still income 
-Add it to income
-Show as an asset (owing to us)
-+Calculation
-Income = 8 000 + 2 000 = R10 000
-?How to think:
-“We earned it, even if we didn’t get cash”
-    
-3. PREPAID EXPENSE (Expense paid early)
- Definition
-= Expense that was paid in advance, but part belongs to next year
-- Example
-Insurance paid = R2 400 for 12 months
-Only 6 months used this year
-# Treatment
-Only part is an expense 
-The rest is an asset (prepaid)
-+ Calculation
-Monthly = 2 400 ÷ 12 = 200
-Used = 200 × 6 = R1 200
-Expense = R1 200
-Prepaid = R1 200
-? How to think:
-“We paid too much — some is for next year”
-    
-4. INCOME RECEIVED IN ADVANCE (Unearned income)
- Definition
-= Money received before it is earned
-- Example
-Received rent = R3 000
-But R1 000 is for next year
-# Treatment
-Only part is income 
-The rest is a liability (we owe service)
-+ Calculation
-Income = 3 000 – 1 000 = R2 000
-? How to think:
-“We got cash, but we haven’t earned all
-</pre>
-    <div class="question"><b>NSC:</b> Record issue of shares.
-https://www.education.gov.za/LinkClick.aspx?fileticket=u60bqawgYVo%3d&tabid=4504&portalid=0&mid=12296<a href="https://www.education.gov.za/LinkClick.aspx?fileticket=u60bqawgYVo%3d&tabid=4504&portalid=0&mid=12296">NSC 2023 MAY/JUNE</a>
-https://www.education.gov.za/LinkClick.aspx?fileticket=I3ZOntNTjjo%3d&tabid=4682&portalid=0&mid=12660<a href="https://www.education.gov.za/LinkClick.aspx?fileticket=I3ZOntNTjjo%3d&tabid=4682&portalid=0&mid=12660">NSC 2023 NOV</a>
-https://www.education.gov.za/LinkClick.aspx?fileticket=clETm9stwdA%3d&tabid=4933&portalid=0&mid=13126<a href="https://www.education.gov.za/LinkClick.aspx?fileticket=clETm9stwdA%3d&tabid=4933&portalid=0&mid=13126">NSC 2024 MAY/JUNE</a>
-https://www.education.gov.za/LinkClick.aspx?fileticket=LPWTS_eR8NI%3d&tabid=5193&portalid=0&mid=13703<a href="https://www.education.gov.za/LinkClick.aspx?fileticket=LPWTS_eR8NI%3d&tabid=5193&portalid=0&mid=13703">NSC 2024 NOV</a>
-https://www.education.gov.za/LinkClick.aspx?fileticket=t3P4yVJyB84%3d&tabid=5475&portalid=0&mid=14224<a href="https://www.education.gov.za/LinkClick.aspx?fileticket=t3P4yVJyB84%3d&tabid=5475&portalid=0&mid=14224">NSC 2025 MAY/JUNE</a>
-    </div>
-</div>
-
-<div class="section">
-    <h2>Fixed Assets</h2>
-    <p>Depreciation and asset disposal.</p>
-    <div class="question"><b>NSC:</b> Calculate depreciation.</div>
-</div>
-
-<div class="section">
-    <h2>Cash Flow</h2>
-    <p>Track inflows and outflows.</p>
-    <div class="question"><b>NSC:</b> Prepare cash flow statement.</div>
-</div>
-
-</div>
-
-<!-- QUIZ -->
-<div id="quiz" class="section">
-    <h2>Accounting Quiz</h2>
-
-    <p><b>1. Current ratio formula?</b></p>
-    <input type="radio" name="q1" value="a"> Current Assets ÷ Current Liabilities<br>
-    <input type="radio" name="q1" value="b"> Profit ÷ Sales<br>
-
-    <p><b>2. VAT rate?</b></p>
-    <input type="radio" name="q2" value="a"> 10%<br>
-    <input type="radio" name="q2" value="b"> 15%<br>
-
-    <p><b>3. Depreciation affects?</b></p>
-    <input type="radio" name="q3" value="a"> Assets<br>
-    <input type="radio" name="q3" value="b"> Income<br>
+    <p>VAT rate?</p>
+    <input type="radio" name="q1" value="0"> 10%<br>
+    <input type="radio" name="q1" value="1"> 15%<br>
 
     <br>
-    <button class="btn" onclick="checkQuiz()">Submit</button>
+    <button onclick="submitQuiz()">Submit</button>
 
-    <h3 id="result"></h3>
+    <h4 id="scoreDisplay"></h4>
+
 </div>
 
-<!-- CONTACT -->
-<div id="contact" class="contact">
-    <h2>Book a Session</h2>
-    <p>One-on-one tutoring at your home</p>
-    <a href="https://wa.me/27646660194" class="btn">WhatsApp</a>
-</div>
-
-<!-- LOGIN POPUP -->
-<div id="loginBox">
-<h3>Student Login</h3>
-
-<input type="text" id="studentName" placeholder="Name" style="width:100%;padding:8px;"><br><br>
-<input type="text" id="studentGrade" placeholder="Grade" style="width:100%;padding:8px;"><br><br>
-<input type="password" id="studentPassword" placeholder="Password" style="width:100%;padding:8px;"><br><br>
-
-<button class="btn" onclick="saveUser()">Register</button>
-<button class="btn" onclick="loginUser()">Login</button>
-<button class="btn" onclick="closeLogin()">Close</button>
-</div>
-
-<footer>
-    <p>Kasi Tutor © 2026</p>
-</footer>
-
-<!-- SCRIPT -->
-<script>
-
-function openLogin() {
-    document.getElementById("loginBox").style.display = "block";
-}
-
-function closeLogin() {
-    document.getElementById("loginBox").style.display = "none";
-}
-
-function saveUser() {
-    let name = studentName.value;
-    let grade = studentGrade.value;
-    let password = studentPassword.value;
-
-    if(!name || !grade || !password) {
-        alert("Fill all fields");
-        return;
-    }
-
-    localStorage.setItem("kasiName", name);
-    localStorage.setItem("kasiGrade", grade);
-    localStorage.setItem("kasiPassword", password);
-
-    welcomeText.innerHTML = "Welcome " + name + " (Grade " + grade + ")";
-    closeLogin();
-}
-
-function loginUser() {
-    let input = studentPassword.value;
-    let saved = localStorage.getItem("kasiPassword");
-
-    if(input === saved) {
-        alert("Login successful");
-        closeLogin();
-    } else {
-        alert("Wrong password");
-    }
-}
-
-function checkQuiz() {
-    let score = 0;
-
-    if(document.querySelector('input[name="q1"]:checked')?.value === "a") score++;
-    if(document.querySelector('input[name="q2"]:checked')?.value === "b") score++;
-    if(document.querySelector('input[name="q3"]:checked')?.value === "a") score++;
-
-    let total = 3;
-    let percent = (score/total)*100;
-
-    result.innerHTML = "Score: " + percent + "%";
-
-    let name = localStorage.getItem("kasiName");
-    if(name) localStorage.setItem(name+"_score", percent);
-
-    loadScores();
-}
-
-function loadScores() {
-    let name = localStorage.getItem("kasiName");
-    let score = localStorage.getItem(name+"_score");
-
-    if(score) {
-        savedScore.innerHTML = name + "'s Last Score: " + score + "%";
-    }
-}
-
-window.onload = function() {
-    let name = localStorage.getItem("kasiName");
-    let grade = localStorage.getItem("kasiGrade");
-
-    if(name && grade) {
-        welcomeText.innerHTML = "Welcome back " + name + " (Grade " + grade + ")";
-    }
-
-    loadScores();
-}
-
-</script>
-   <button onclick="toggleChat()" style="position:fixed;bottom:20px;right:20px;">💬</button>
+<!-- CHATBOT -->
+<button onclick="toggleChat()" style="position:fixed;bottom:20px;right:20px;">💬</button>
 
 <div id="chatBox" style="display:none;position:fixed;bottom:80px;right:20px;background:white;color:black;padding:10px;width:250px;">
     <h3>Kasi Tutor Bot</h3>
@@ -534,15 +205,17 @@ window.onload = function() {
     <button onclick="sendMessage()">Send</button>
 </div>
 
-<button onclick="toggleExamMode()">📊 Exam Mode</button> 
-
-</body>
-  <script>
+<script>
 
 // LOGIN
 function login() {
     let name = username.value;
-    let grade = grade.value;
+    let grade = document.getElementById("grade").value;
+
+    if(!name || !grade) {
+        alert("Enter name and grade");
+        return;
+    }
 
     localStorage.setItem("name", name);
     localStorage.setItem("grade", grade);
@@ -560,12 +233,18 @@ function loadDashboard() {
     loginPage.style.display = "none";
     dashboard.style.display = "block";
 
-    welcomeMsg.innerText = "Welcome " + name;
+    welcomeMsg.innerText = "Welcome " + name + " (Grade " + grade + ")";
 
-    let savedScore = localStorage.getItem("score_" + name);
-    if(savedScore) {
-        scoreDisplay.innerText = "Previous Score: " + savedScore;
-    }
+    // Hide all grades
+    grade10.style.display = "none";
+    grade11.style.display = "none";
+    grade12.style.display = "none";
+
+    // Show only selected grade
+    document.getElementById("grade" + grade).style.display = "block";
+
+    let score = localStorage.getItem("score_" + name);
+    if(score) scoreDisplay.innerText = "Previous Score: " + score;
 }
 
 // LOGOUT
@@ -574,27 +253,24 @@ function logout() {
     location.reload();
 }
 
-// CHAPTER TOGGLE
-function toggleChapters() {
-    chapters.style.display = chapters.style.display === "none" ? "block" : "none";
+// TOGGLE CHAPTERS
+function toggle(id) {
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
 // QUIZ
 function submitQuiz() {
-    let score = 0;
-
     let q1 = document.querySelector('input[name="q1"]:checked');
-    let q2 = document.querySelector('input[name="q2"]:checked');
 
-    if(!q1 || !q2) return alert("Answer all");
+    if(!q1) return alert("Answer question");
 
-    score += +q1.value;
-    score += +q2.value;
+    let score = +q1.value;
 
     let name = localStorage.getItem("name");
     localStorage.setItem("score_" + name, score);
 
-    scoreDisplay.innerText = "Score: " + score + "/2";
+    scoreDisplay.innerText = "Score: " + score + "/1";
 }
 
 // CHATBOT
@@ -602,19 +278,13 @@ function toggleChat() {
     chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
 }
 
-let examMode = false;
-
-function toggleExamMode() {
-    examMode = !examMode;
-    alert("Exam Mode " + (examMode ? "ON" : "OFF"));
-}
-
 function sendMessage() {
     let input = userInput.value.toLowerCase();
+
     let response = "Ask accounting question";
 
     if(input.includes("vat")) response = "VAT is 15%";
-    if(input.includes("gross profit")) response = "Sales - Cost of Sales";
+    if(input.includes("income statement")) response = "Income Statement shows profit or loss";
 
     chatMessages.innerHTML += "<p>You: "+input+"</p>";
     chatMessages.innerHTML += "<p>Bot: "+response+"</p>";
@@ -625,5 +295,6 @@ function sendMessage() {
 // AUTO LOGIN
 window.onload = loadDashboard;
 
-</script>  
-</html>
+</script>
+
+</body>
