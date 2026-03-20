@@ -1,133 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kasi Tutor</title>
 
 <style>
-body {
-    font-family: Arial;
-    background: black;
-    color: white;
-    text-align: center;
-}
+body { font-family: Arial; background:black; color:white; text-align:center; }
 
-button {
-    background: red;
-    color: white;
-    padding: 10px;
-    border: none;
-    margin: 5px;
-    cursor: pointer;
-}
+button { background:red; color:white; padding:10px; border:none; margin:5px; }
 
-.card {
-    background: #222;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-}
+.card { background:#222; padding:20px; margin:10px; border-radius:10px; cursor:pointer; }
+.card:hover { background:red; }
 
-.card:hover {
-    background: red;
-}   
+.section { background:white; color:black; margin:15px; padding:15px; border-radius:8px; }
 
-
-/* NAVBAR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: black;
-}
-
-nav h2 {
-    color: red;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: red;
-}
-
-/* BUTTON */
-.btn {
-    padding: 8px 15px;
-    background: red;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* HEADER */
-header {
-    text-align: center;
-    padding: 40px;
-    background: red;
-}
-
-/* SECTIONS */
-.section {
-    background: white;
-    color: black;
-    margin: 15px;
-    padding: 20px;
-    border-left: 8px solid red;
-    border-radius: 8px;
-}
-
-/* QUIZ */
-.question {
-    background: #eee;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-/* LOGIN POPUP */
-#loginBox {
+#chatBox {
     display:none;
     position:fixed;
-    top:30%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    bottom:80px;
+    right:20px;
     background:white;
-    padding:20px;
-    border-radius:10px;
     color:black;
-    width:300px;
-}
-
-/* CONTACT */
-.contact {
-    text-align:center;
-    padding:30px;
-    background:#111;
-}
-
-/* FOOTER */
-footer {
-    background:red;
-    text-align:center;
     padding:10px;
+    width:260px;
+    border-radius:10px;
 }
 </style>
 </head>
+
 <body>
 
-<!-- LOGIN PAGE (ONLY THING USER SEES FIRST) -->
+<!-- LOGIN -->
 <div id="loginPage">
     <h2>Kasi Tutor Login</h2>
 
@@ -146,76 +49,140 @@ footer {
 <!-- DASHBOARD -->
 <div id="dashboard" style="display:none;">
 
-    <h2 id="welcomeMsg"></h2>
-    <button onclick="logout()">Logout</button>
+<h2 id="welcomeMsg"></h2>
+<button onclick="logout()">Logout</button>
 
-    <!-- GRADE 10 -->
-    <div id="grade10" style="display:none;">
-        <div class="card" onclick="toggle('chap10')">
-            <h3>📘 Grade 10</h3>
-        </div>
-        <div id="chap10" style="display:none;">
-            <p>Basic Accounting Concepts</p>
-        </div>
+<!-- GRADE 10 -->
+<div id="grade10" style="display:none;">
+    <div class="card" onclick="toggle('g10')">Grade 10</div>
+    <div id="g10" style="display:none;" class="section">
+        Basic Accounting Concepts
     </div>
+</div>
 
-    <!-- GRADE 11 -->
-    <div id="grade11" style="display:none;">
-        <div class="card" onclick="toggle('chap11')">
-            <h3>📘 Grade 11</h3>
-        </div>
-        <div id="chap11" style="display:none;">
-            <p>Financial Statements</p>
-        </div>
+<!-- GRADE 11 -->
+<div id="grade11" style="display:none;">
+    <div class="card" onclick="toggle('g11')">Grade 11</div>
+    <div id="g11" style="display:none;" class="section">
+        Financial Statements
     </div>
+</div>
 
-    <!-- GRADE 12 -->
-    <div id="grade12" style="display:none;">
-        <div class="card" onclick="toggle('chap12')">
-            <h3>📘 Grade 12</h3>
-        </div>
-        <div id="chap12" style="display:none;">
-            <p>Income Statement</p>
-            <p>VAT</p>
-            <p>Depreciation</p>
-        </div>
+<!-- GRADE 12 -->
+<div id="grade12" style="display:none;">
+    <div class="card" onclick="toggle('g12')">Grade 12</div>
+
+    <div id="g12" style="display:none;" class="section">
+
+<h3>INCOME STATEMENT (FULL NOTES)</h3>
+
+<p>Income Statement shows profit or loss.</p>
+
+<b>Structure:</b>
+<ol>
+<li>Sales</li>
+<li>Cost of Sales</li>
+<li>Gross Profit</li>
+<li>Other Income</li>
+<li>Expenses</li>
+<li>Net Profit</li>
+</ol>
+
+<b>Sales:</b> Income from selling goods  
+<br><b>Example:</b> R20 000  
+
+<br><br>
+
+<b>Cost of Sales:</b>  
+Opening Stock + Purchases – Closing Stock  
+
+<br><b>Example:</b>  
+5 000 + 15 000 – 4 000 = R16 000  
+
+<br><br>
+
+<b>Gross Profit:</b>  
+Sales – Cost of Sales  
+
+<br><b>Example:</b>  
+20 000 – 16 000 = R4 000  
+
+<br><br>
+
+<b>Expenses include:</b>
+<ul>
+<li>Salaries</li>
+<li>Rent</li>
+<li>Electricity</li>
+<li>Advertising</li>
+<li>Insurance</li>
+<li>Depreciation</li>
+</ul>
+
+<br>
+
+<b>Depreciation:</b>  
+Cost × Rate  
+
+<br><b>Example:</b>  
+10 000 × 10% = R1 000  
+
+<br><br>
+
+<b>Adjustments:</b>
+
+<br><br>
+
+Accrued Expense → Expense owed  
+<br>Accrued Income → Income owed to business  
+<br>Prepaid Expense → Paid early  
+<br>Income Received in Advance → Not yet earned  
+
+<br><br>
+
+<b>Examples:</b>
+
+<br>Accrued Expense: +R1 000  
+<br>Accrued Income: +R2 000  
+<br>Prepaid: subtract unused  
+<br>Income in advance: subtract  
+
     </div>
+</div>
 
-    <!-- QUIZ -->
-    <h3>Quiz</h3>
+<!-- QUIZ -->
+<div class="section">
+<h3>Quiz</h3>
 
-    <p>VAT rate?</p>
-    <input type="radio" name="q1" value="0"> 10%<br>
-    <input type="radio" name="q1" value="1"> 15%<br>
+<p>VAT rate?</p>
+<input type="radio" name="q1" value="0">10%<br>
+<input type="radio" name="q1" value="1">15%<br>
 
-    <br>
-    <button onclick="submitQuiz()">Submit</button>
-
-    <h4 id="scoreDisplay"></h4>
+<br>
+<button onclick="submitQuiz()">Submit</button>
+<h4 id="scoreDisplay"></h4>
+</div>
 
 </div>
 
 <!-- CHATBOT -->
 <button onclick="toggleChat()" style="position:fixed;bottom:20px;right:20px;">💬</button>
 
-<div id="chatBox" style="display:none;position:fixed;bottom:80px;right:20px;background:white;color:black;padding:10px;width:250px;">
-    <h3>Kasi Tutor Bot</h3>
-    <div id="chatMessages"></div>
-    <input id="userInput">
-    <button onclick="sendMessage()">Send</button>
+<div id="chatBox">
+<h3>Kasi Tutor Bot</h3>
+<div id="chatMessages"></div>
+<input id="userInput">
+<button onclick="sendMessage()">Send</button>
 </div>
 
 <script>
 
 // LOGIN
 function login() {
-    let name = username.value;
+    let name = document.getElementById("username").value;
     let grade = document.getElementById("grade").value;
 
-    if(!name || !grade) {
-        alert("Enter name and grade");
-        return;
-    }
+    if(!name || !grade) return alert("Enter all details");
 
     localStorage.setItem("name", name);
     localStorage.setItem("grade", grade);
@@ -225,26 +192,26 @@ function login() {
 
 // LOAD DASHBOARD
 function loadDashboard() {
+
     let name = localStorage.getItem("name");
     let grade = localStorage.getItem("grade");
 
     if(!name) return;
 
-    loginPage.style.display = "none";
-    dashboard.style.display = "block";
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
 
-    welcomeMsg.innerText = "Welcome " + name + " (Grade " + grade + ")";
+    document.getElementById("welcomeMsg").innerText =
+        "Welcome " + name + " (Grade " + grade + ")";
 
-    // Hide all grades
-    grade10.style.display = "none";
-    grade11.style.display = "none";
-    grade12.style.display = "none";
+    document.getElementById("grade10").style.display = "none";
+    document.getElementById("grade11").style.display = "none";
+    document.getElementById("grade12").style.display = "none";
 
-    // Show only selected grade
     document.getElementById("grade" + grade).style.display = "block";
 
     let score = localStorage.getItem("score_" + name);
-    if(score) scoreDisplay.innerText = "Previous Score: " + score;
+    if(score) document.getElementById("scoreDisplay").innerText = "Previous Score: " + score;
 }
 
 // LOGOUT
@@ -253,7 +220,7 @@ function logout() {
     location.reload();
 }
 
-// TOGGLE CHAPTERS
+// TOGGLE
 function toggle(id) {
     let el = document.getElementById(id);
     el.style.display = el.style.display === "none" ? "block" : "none";
@@ -262,34 +229,39 @@ function toggle(id) {
 // QUIZ
 function submitQuiz() {
     let q1 = document.querySelector('input[name="q1"]:checked');
-
     if(!q1) return alert("Answer question");
 
-    let score = +q1.value;
+    let score = q1.value;
 
     let name = localStorage.getItem("name");
     localStorage.setItem("score_" + name, score);
 
-    scoreDisplay.innerText = "Score: " + score + "/1";
+    document.getElementById("scoreDisplay").innerText = "Score: " + score + "/1";
 }
 
 // CHATBOT
 function toggleChat() {
-    chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+    let box = document.getElementById("chatBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
 }
 
 function sendMessage() {
-    let input = userInput.value.toLowerCase();
+
+    let inputEl = document.getElementById("userInput");
+    let chatEl = document.getElementById("chatMessages");
+
+    let input = inputEl.value.toLowerCase();
 
     let response = "Ask accounting question";
 
     if(input.includes("vat")) response = "VAT is 15%";
-    if(input.includes("income statement")) response = "Income Statement shows profit or loss";
+    else if(input.includes("income statement")) response = "Income Statement shows profit or loss";
+    else if(input.includes("gross profit")) response = "Sales - Cost of Sales";
 
-    chatMessages.innerHTML += "<p>You: "+input+"</p>";
-    chatMessages.innerHTML += "<p>Bot: "+response+"</p>";
+    chatEl.innerHTML += "<p><b>You:</b> " + input + "</p>";
+    chatEl.innerHTML += "<p><b>Bot:</b> " + response + "</p>";
 
-    userInput.value = "";
+    inputEl.value = "";
 }
 
 // AUTO LOGIN
@@ -298,3 +270,4 @@ window.onload = loadDashboard;
 </script>
 
 </body>
+</html>
